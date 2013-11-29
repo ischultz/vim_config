@@ -85,11 +85,13 @@ noremap k gk
 cmap Tabe tabe
 nnoremap <leader><leader>r :exec &nu ? "se rnu" : "se nu"<CR>
 
-:nnoremap <silent> v v:<C-u>set nonu rnu<CR>gv
-:nnoremap <silent> V V:<C-u>set nonu rnu<CR>gv
-:nnoremap <silent> <C-v> <C-v>:<C-u>set nonu rnu<CR>gv
+nnoremap <silent> v v:<C-u>set nonu rnu<CR>gv
+nnoremap <silent> V V:<C-u>set nonu rnu<CR>gv
+nnoremap <silent> <C-v> <C-v>:<C-u>set nonu rnu<CR>gv
 vnoremap <Esc> <Esc>:set nu<CR>
 
+nnoremap <S-H> :tabprevious<CR>
+nnoremap <S-L> :tabnext<CR>
 
 " Find merge conflict markers
 map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
