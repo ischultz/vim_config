@@ -83,10 +83,13 @@ map <C-H> <C-W>h<C-W>_
 noremap j gj
 noremap k gk
 cmap Tabe tabe
-nnoremap <leader><leader>r :exec &nu ? "se rnu" : "se nu"<CR>
+nnoremap <leader>r :exec &nu ? &rnu ? "set rnu! nu!" : "set rnu" : "set nu"<CR>
+nnoremap <leader>R :exec &rnu ? "set rnu! nu" : &nu ? "set nu!" : "set rnu nu"<CR>
 
 nnoremap <S-H> :tabprevious<CR>
 nnoremap <S-L> :tabnext<CR>
+nnoremap <C-S-H> :bp<CR>
+nnoremap <c-S-L> : bn<CR>
 
 " Find merge conflict markers
 map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
