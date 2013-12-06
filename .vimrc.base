@@ -91,6 +91,9 @@ nnoremap <S-L> :tabnext<CR>
 nnoremap <C-S-H> :bp<CR>
 nnoremap <c-S-L> : bn<CR>
 
+" Trim whitespace from end of lines
+:nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+
 " Find merge conflict markers
 map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
 
