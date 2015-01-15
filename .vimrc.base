@@ -47,7 +47,6 @@ call vundle#rc()
          let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
       endif
    " }
-   Bundle 'gmarik/vundle'
    Bundle 'L9'
    Bundle 'FuzzyFinder'
    Bundle 'Lokaltog/vim-easymotion'
