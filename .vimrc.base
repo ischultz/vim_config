@@ -47,7 +47,6 @@ call vundle#rc()
          let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
       endif
    " }
-   Bundle 'gmarik/vundle'
    Bundle 'L9'
    Bundle 'FuzzyFinder'
    Bundle 'Lokaltog/vim-easymotion'
@@ -62,6 +61,7 @@ call vundle#rc()
    Bundle 'Shougo/neocomplcache'
    Bundle 'matchit.zip'
    Bundle 'bling/vim-airline'
+   Bundle 'editorconfig/editorconfig-vim'
 
    " HTML {
       Bundle 'amirh/HTML-AutoCloseTag'
