@@ -12,8 +12,8 @@ IF NOT EXIST "%BASE_DIR%\bundle" (
    call mkdir "%BASE_DIR%\bundle"
 )
 
-IF NOT EXIST "%BASE_DIR%\bundle\vundle" (
-   call git clone https://github.com/gmarik/vundle.git "%BASE_DIR%/bundle/vundle"
+IF NOT EXIST "%BASE_DIR%\bundle\Vundle.vim" (
+   call git clone https://github.com/gmarik/Vundle.vim.git "%BASE_DIR%/bundle/Vundle.vim"
 )
 
 IF EXIST "%HOME%\_vimrc" (
@@ -31,4 +31,4 @@ IF ERRORLEVEL 1 (
    del "%VIMRC_PATH%.orig"
 )
 
-call vim +BundleInstall! +BundleClean +qall
+call vim +PluginInstall! +PluginClean +qall
