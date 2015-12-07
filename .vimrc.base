@@ -158,6 +158,8 @@ set shortmess+=filmnrxoOtT
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
 set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+set visualbell
 
 autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml,cs autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
