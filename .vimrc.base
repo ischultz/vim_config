@@ -37,21 +37,8 @@ call vundle#begin(vundle_path)
    " Deps {
       Plugin 'gmarik/Vundle.vim'
       Plugin 'MarcWeber/vim-addon-mw-utils'
-      Plugin 'tomtom/tlib_vim'
-      if executable('ack-grep')
-         let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-         Plugin 'mileszs/ack.vim'
-      elseif executable('ack')
-         Plugin 'mileszs/ack.vim'
-         elseif executable('ag')
-      Plugin 'mileszs/ack.vim'
-         let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
-      endif
    " }
-   Plugin 'L9'
-   Plugin 'FuzzyFinder'
    Plugin 'Lokaltog/vim-easymotion'
-   Plugin 'kien/ctrlp.vim'
    Plugin 'scrooloose/nerdtree'
    Plugin 'scrooloose/nerdcommenter'
    Plugin 'tpope/vim-surround'
@@ -61,7 +48,6 @@ call vundle#begin(vundle_path)
    Plugin 'matchit.zip'
    Plugin 'bling/vim-airline'
    Plugin 'editorconfig/editorconfig-vim'
-   Plugin 'jeetsukumaran/vim-filebeagle'
    Plugin 'tpope/vim-fugitive'
 
    " HTML {
@@ -69,10 +55,6 @@ call vundle#begin(vundle_path)
       Plugin 'hail2u/vim-css3-syntax'
       Plugin 'tpope/vim-haml'
    " }
-
-   if executable('ctags')
-      Plugin 'majutsushi/tagbar'
-   endif
 "}
 
 call vundle#end()
@@ -121,9 +103,9 @@ map <leader>et :tabe %%
 set guioptions+=b
 set ai
 set guifont=courier_new:h10
-set tabstop=3
-set softtabstop=3
-set shiftwidth=3
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set expandtab
 set ruler
 set smartindent
@@ -261,15 +243,6 @@ augroup END
          au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
          set completeopt=menu,preview,longest
       " }
-
-      " Ctags {
-         set tags=./tags;/,~/.vimtags
-
-         " Make tags placed in .git/tags file available in all levels of a repository
-         let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
-            if gitroot != ''
-            let &tags = &tags . ',' . gitroot . '/.git/tags'
-         endif
    " }
 
    " AutoCloseTag {
@@ -301,53 +274,6 @@ augroup END
       nmap <leader>sl :SessionList<CR>
       nmap <leader>ss :SessionSave<CR>
    " }
-
-   " ctrlp {
-      let g:ctrlp_working_path_mode = 'ra'
-      nnoremap <silent> <D-t> :CtrlP<CR>
-      nnoremap <silent> <D-r> :CtrlPMRU<CR>
-         let g:ctrlp_custom_ignore = {
-         \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-         \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
-
-      " On Windows use "dir" as fallback command.
-      if has('win32') || has('win64')
-         let g:ctrlp_user_command = {
-            \ 'types': {
-               \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
-               \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-            \ },
-            \ 'fallback': 'dir %s /-n /b /s /a-d'
-         \ }
-      else
-      let g:ctrlp_user_command = {
-         \ 'types': {
-            \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
-            \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-         \ },
-         \ 'fallback': 'find %s -type f'
-      \ }
-      endif
-   "}
-
-   " TagBar {
-      nnoremap <silent> <leader>tt :TagbarToggle<CR>
-
-      " If using go please install the gotags program using the following
-      " go install github.com/jstemmer/gotags
-      " And make sure gotags is in your path
-      let g:tagbar_type_go = {
-         \ 'ctagstype' : 'go',
-         \ 'kinds'     : [  'p:package', 'i:imports:1', 'c:constants', 'v:variables',
-         \ 't:types',  'n:interfaces', 'w:fields', 'e:embedded', 'm:methods',
-         \ 'r:constructor', 'f:functions' ],
-         \ 'sro' : '.',
-         \ 'kind2scope' : { 't' : 'ctype', 'n' : 'ntype' },
-         \ 'scope2kind' : { 'ctype' : 't', 'ntype' : 'n' },
-         \ 'ctagsbin'  : 'gotags',
-         \ 'ctagsargs' : '-sort -silent'
-      \ }
-   "}
 
    " PythonMode {
    " Disable if python support not present
