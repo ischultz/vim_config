@@ -51,7 +51,7 @@ call vundle#begin(vundle_path)
    Plugin 'tpope/vim-fugitive'
 
    " HTML {
-      Plugin 'amirh/HTML-AutoCloseTag'
+      Plugin 'vim-scripts/HTML-AutoCloseTag'
       Plugin 'hail2u/vim-css3-syntax'
       Plugin 'tpope/vim-haml'
    " }
