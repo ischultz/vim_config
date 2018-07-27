@@ -48,7 +48,6 @@ call vundle#begin(vundle_path)
    Plugin 'matchit.zip'
    Plugin 'bling/vim-airline'
    Plugin 'editorconfig/editorconfig-vim'
-   Plugin 'tpope/vim-fugitive'
 
    " HTML {
       Plugin 'vim-scripts/HTML-AutoCloseTag'
