@@ -39,7 +39,7 @@ call vundle#begin(vundle_path)
       Plugin 'MarcWeber/vim-addon-mw-utils'
    " }
    Plugin 'Lokaltog/vim-easymotion'
-   Plugin 'scrooloose/nerdtree'
+   "Plugin 'scrooloose/nerdtree'
    Plugin 'scrooloose/nerdcommenter'
    Plugin 'tpope/vim-surround'
    Plugin 'mbbill/undotree'
@@ -250,23 +250,51 @@ augroup END
       nmap <Leader>ac <Plug>ToggleAutoCloseMappings
    " }
 
-   " NerdTree {
-      autocmd VimEnter * if exists(":NERDTreeToggle") | :call ConfigureNERDTree() | endif
-      function! ConfigureNERDTree()
-         map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-         map <leader>e :NERDTreeFind<CR>
-         nmap <leader>nt :NERDTreeFind<CR>
+   "Built-in file browser {
+      let g:netrw_banner = 0
+      let g:netrw_liststyle = 3
+      let g:netrw_browse_split = 4
+      let g:netrw_altv = 1
+      let g:netrw_winsize = 25
+      let g:netrw_retmap = 1
+      let g:NetrwIsOpen=0
 
-         let NERDTreeShowBookmarks=1
-         let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-         let NERDTreeChDirMode=0
-         let NERDTreeQuitOnOpen=1
-         let NERDTreeMouseMode=2
-         let NERDTreeShowHidden=1
-         let NERDTreeKeepTreeInNewTab=1
-         let g:nerdtree_tabs_open_on_gui_startup=0
+      function! ToggleNetrw()
+        if g:NetrwIsOpen
+          let i = bufnr("$")
+          while (i >= 1)
+            if (getbufvar(i, "&filetype") == "netrw")
+              silent exe "bwipeout " . i 
+            endif
+            let i-=1
+          endwhile
+          let g:NetrwIsOpen=0
+        else
+          let g:NetrwIsOpen=1
+          silent Vexplore
+        endif
       endfunction
-   " }
+
+      noremap <silent> <C-E> :call ToggleNetrw()<CR>
+   "}
+
+   "" NerdTree {
+      "autocmd VimEnter * if exists(":NERDTreeToggle") | :call ConfigureNERDTree() | endif
+      "function! ConfigureNERDTree()
+         "map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+         "map <leader>e :NERDTreeFind<CR>
+         "nmap <leader>nt :NERDTreeFind<CR>
+
+         "let NERDTreeShowBookmarks=1
+         "let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+         "let NERDTreeChDirMode=0
+         "let NERDTreeQuitOnOpen=1
+         "let NERDTreeMouseMode=2
+         "let NERDTreeShowHidden=1
+         "let NERDTreeKeepTreeInNewTab=1
+         "let g:nerdtree_tabs_open_on_gui_startup=0
+      "endfunction
+   "" }
 
    " Session List {
       set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
@@ -345,19 +373,19 @@ augroup END
       call InitializeDirectories()
    " }
 
-   " Initialize NERDTree as needed {
-      function! NERDTreeInitAsNeeded()
-         redir => bufoutput
-         buffers!
-         redir END
-         let idx = stridx(bufoutput, "NERD_tree")
-         if idx > -1
-            NERDTreeMirror
-            NERDTreeFind
-            wincmd l
-         endif
-      endfunction
-   " }
+   "" Initialize NERDTree as needed {
+      "function! NERDTreeInitAsNeeded()
+         "redir => bufoutput
+         "buffers!
+         "redir END
+         "let idx = stridx(bufoutput, "NERD_tree")
+         "if idx > -1
+            "NERDTreeMirror
+            "NERDTreeFind
+            "wincmd l
+         "endif
+      "endfunction
+   "" }
 
    " Strip whitespace {
       function! StripTrailingWhitespace()
